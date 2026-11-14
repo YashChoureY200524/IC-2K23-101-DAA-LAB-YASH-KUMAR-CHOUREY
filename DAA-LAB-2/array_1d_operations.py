@@ -1,68 +1,145 @@
-# Performs insertion, deletion, linear search, and left/right rotation on a 1D list.
 
-def insert_value(arr, index, value):
-    if index < 0 or index > len(arr):
-        raise IndexError(f"Index must be between 0 and {len(arr)}.")
-    arr.insert(index, value)
+import java.util.ArrayList;
+import java.util.Scanner;
 
-def delete_value(arr, index):
-    if index < 0 or index >= len(arr):
-        raise IndexError(f"Index must be between 0 and {len(arr)-1}.")
-    return arr.pop(index)
+// Performs insertion, deletion, linear search,
+// and left/right rotation on a 1D list.
 
-def linear_search(arr, target):
-    for index, value in enumerate(arr):
-        if value == target:
-            return index
-    return -1
+public class Main {
 
-def rotate_left(arr, k):
-    if not arr:
-        return
-    k %= len(arr)
-    arr[:] = arr[k:] + arr[:k]
+    static void insertValue(ArrayList<Integer> arr, int index, int value) {
+        if (index < 0 || index > arr.size()) {
+            throw new IndexOutOfBoundsException(
+                "Index must be between 0 and " + arr.size() + "."
+            );
+        }
+        arr.add(index, value);
+    }
 
-def rotate_right(arr, k):
-    if not arr:
-        return
-    k %= len(arr)
-    if k:
-        arr[:] = arr[-k:] + arr[:-k]
+    static int deleteValue(ArrayList<Integer> arr, int index) {
+        if (index < 0 || index >= arr.size()) {
+            throw new IndexOutOfBoundsException(
+                "Index must be between 0 and " + (arr.size() - 1) + "."
+            );
+        }
+        return arr.remove(index);
+    }
 
-def main():
-    arr = list(map(int, input("Enter array elements separated by spaces (blank for empty): ").split()))
-    while True:
-        print("\nArray:", arr)
-        print("1.Insert  2.Delete  3.Linear search  4.Rotate left  5.Rotate right  6.Exit")
-        choice = input("Choice: ").strip()
-        try:
-            if choice == "1":
-                index = int(input("Index (0 to len): "))
-                value = int(input("Value: "))
-                insert_value(arr, index, value)
-                print("Updated array:", arr)
-            elif choice == "2":
-                index = int(input("Index to delete: "))
-                removed = delete_value(arr, index)
-                print(f"Removed {removed}. Array:", arr)
-            elif choice == "3":
-                target = int(input("Value to search: "))
-                index = linear_search(arr, target)
-                print(f"Found at index {index}." if index != -1 else "Value not found.")
-            elif choice in ("4", "5"):
-                k = int(input("Rotate by k positions: "))
-                if k < 0:
-                    print("k must be non-negative.")
-                    continue
-                (rotate_left if choice == "4" else rotate_right)(arr, k)
-                print("Updated array:", arr)
-            elif choice == "6":
-                print("Exiting.")
-                break
-            else:
-                print("Invalid choice.")
-        except (ValueError, IndexError) as error:
-            print("Error:", error)
+    static int linearSearch(ArrayList<Integer> arr, int target) {
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i) == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
-if __name__ == "__main__":
-    main()
+    static void rotateLeft(ArrayList<Integer> arr, int k) {
+        if (arr.isEmpty()) return;
+
+        k %= arr.size();
+
+        for (int i = 0; i < k; i++) {
+            int first = arr.remove(0);
+            arr.add(first);
+        }
+    }
+
+    static void rotateRight(ArrayList<Integer> arr, int k) {
+        if (arr.isEmpty()) return;
+
+        k %= arr.size();
+
+        for (int i = 0; i < k; i++) {
+            int last = arr.remove(arr.size() - 1);
+            arr.add(0, last);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Integer> arr = new ArrayList<>();
+
+        System.out.print("Enter array elements separated by spaces (blank for empty): ");
+        String input = sc.nextLine().trim();
+
+        if (!input.isEmpty()) {
+            for (String s : input.split("\\s+")) {
+                arr.add(Integer.parseInt(s));
+            }
+        }
+
+        while (true) {
+            System.out.println("\nArray: " + arr);
+            System.out.println("1.Insert  2.Delete  3.Linear search  4.Rotate left  5.Rotate right  6.Exit");
+            System.out.print("Choice: ");
+            String choice = sc.nextLine().trim();
+
+            try {
+                switch (choice) {
+                    case "1":
+                        System.out.print("Index (0 to len): ");
+                        int index = Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Value: ");
+                        int value = Integer.parseInt(sc.nextLine());
+
+                        insertValue(arr, index, value);
+                        System.out.println("Updated array: " + arr);
+                        break;
+
+                    case "2":
+                        System.out.print("Index to delete: ");
+                        index = Integer.parseInt(sc.nextLine());
+
+                        int removed = deleteValue(arr, index);
+                        System.out.println("Removed " + removed + ". Array: " + arr);
+                        break;
+
+                    case "3":
+                        System.out.print("Value to search: ");
+                        int target = Integer.parseInt(sc.nextLine());
+
+                        index = linearSearch(arr, target);
+
+                        if (index != -1) {
+                            System.out.println("Found at index " + index + ".");
+                        } else {
+                            System.out.println("Value not found.");
+                        }
+                        break;
+
+                    case "4":
+                    case "5":
+                        System.out.print("Rotate by k positions: ");
+                        int k = Integer.parseInt(sc.nextLine());
+
+                        if (k < 0) {
+                            System.out.println("k must be non-negative.");
+                            continue;
+                        }
+
+                        if (choice.equals("4")) {
+                            rotateLeft(arr, k);
+                        } else {
+                            rotateRight(arr, k);
+                        }
+
+                        System.out.println("Updated array: " + arr);
+                        break;
+
+                    case "6":
+                        System.out.println("Exiting.");
+                        sc.close();
+                        return;
+
+                    default:
+                        System.out.println("Invalid choice.");
+                }
+
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+    }
+}
