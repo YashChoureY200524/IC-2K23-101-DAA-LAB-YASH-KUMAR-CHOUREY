@@ -2,7 +2,7 @@
 
 ## Project Description
 
-This project is a menu-driven Java program that performs basic operations on a 2D matrix using `ArrayList`. It allows users to insert rows, delete rows, search for elements, and rotate the matrix 90 degrees clockwise.
+1. This project is a menu-driven Java program that performs basic operations on a 2D matrix using `ArrayList`. It allows users to insert rows, delete rows, search for elements, and rotate the matrix 90 degrees clockwise.
 
 The program also validates matrix dimensions and handles invalid inputs using exception handling.
 
@@ -15,108 +15,47 @@ The program also validates matrix dimensions and handles invalid inputs using ex
 5. **Display Matrix:** Display the current matrix after every operation.
 6. **Input Validation:** Check row sizes, matrix dimensions, and invalid indexes.
 
-## Technologies Used
+# 4.Sorting Algorithms in Java
 
-- Programming Language: Java
-- Data Structure: 2D ArrayList
-- Input Handling: Scanner
-- Exception Handling: try-catch
-- IDE: VS Code / IntelliJ IDEA / Eclipse
+## Aim
+To implement different sorting algorithms in Java using a menu-driven program.
 
-##  Project Structure
+## Description
+This project implements six commonly used sorting algorithms. The user enters an array of integers and selects a sorting technique from the menu. The program sorts the array in ascending order and displays the sorted result.
 
-```text
-2D-Array-Operations/
-│
-├── Main.java
-└── README.md
-```
+## Algorithms Implemented
+1. Bubble Sort
+2. Selection Sort
+3. Insertion Sort
+4. Merge Sort
+5. Quick Sort
+6. Heap Sort
 
-##  How to Run the Program
+## Features
+- Menu-driven Java program.
+- Accepts user input for array elements.
+- Allows selection of different sorting algorithms.
+- Displays the sorted array.
+- Supports repeated execution of different sorting methods on the same input.
+- Uses separate methods for each sorting algorithm.
 
-**Step 1:** Install Java JDK on your computer.
+## Time Complexity
 
-**Step 2:** Save the source code as `Main.java`.
+| Algorithm | Best Case | Average Case | Worst Case |
+|---|---|---|---|
+| Bubble Sort | O(n²) | O(n²) | O(n²) |
+| Selection Sort | O(n²) | O(n²) | O(n²) |
+| Insertion Sort | O(n) | O(n²) | O(n²) |
+| Merge Sort | O(n log n) | O(n log n) | O(n log n) |
+| Quick Sort | O(n log n) | O(n log n) | O(n²) |
+| Heap Sort | O(n log n) | O(n log n) | O(n log n) |
 
-**Step 3:** Open the terminal in the project folder.
+## Requirements
+- Java Development Kit (JDK)
+- Any Java IDE (VS Code, IntelliJ IDEA, Eclipse) or terminal.
 
-**Step 4:** Compile the program:
+## How to Compile and Run
 
-```bash
-javac Main.java
-```
-
-**Step 5:** Run the program:
-
-```bash
-java Main
-```
-
-## Sample Input
-
-```text
-Number of rows: 2
-Number of columns: 3
-Row 0 (3 integers): 1 2 3
-Row 1 (3 integers): 4 5 6
-```
-
-## Sample Output
-
-```text
-Current matrix:
-[1, 2, 3]
-[4, 5, 6]
-
-1.Insert row
-2.Delete row
-3.Search value
-4.Rotate 90 degrees clockwise
-5.Exit
-
-Choice: 4
-
-Rotated matrix:
-[4, 1]
-[5, 2]
-[6, 3]
-```
-
-## Operations Explained
-
-| Operation | Description |
-|---|---|
-| Insert Row | Adds a new row at a specified index. |
-| Delete Row | Removes a row from the matrix. |
-| Search | Finds an element and returns its position. |
-| Rotate | Rotates the matrix 90° clockwise. |
-| Display | Prints all matrix elements. |
-
-##  Time Complexity
-
-Let `R` represent the number of rows and `C` represent the number of columns.
-
-| Operation | Time Complexity |
-|---|---|
-| Insert Row | O(R + C) |
-| Delete Row | O(R + C) |
-| Search Value | O(R × C) |
-| Rotate Matrix | O(R × C) |
-| Display Matrix | O(R × C) |
-
-##  Learning Outcomes
-
-- Understanding 2D data structures.
-- Working with nested ArrayLists in Java.
-- Implementing insertion and deletion operations.
-- Understanding linear search in a matrix.
-- Learning matrix rotation techniques.
-- Applying exception handling and input validation.
-
-## Author
-
-Created as a Java Data Structures and Algorithms practice project.
-
-## 📜 License
-
+1. Save the source code as `Sorting.java`.
+2. Open the terminal in the project
 This project is open-source and available for educational and learning purposes.
